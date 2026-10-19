@@ -6,9 +6,21 @@ const requestLogger = require('./middleware/requestLogger');
 const { notFound, errorHandler } = require('./middleware/errorHandler');
 const userRoutes = require('./routes/userRoutes');
 const employeeRoutes = require('./routes/employeeRoutes');
+const connectDatabase = require('./config/db');
 
 const app = express();
 app.disable('x-powered-by');
+// Vercel loads src/app.js directly; ensure the Atlas connection is ready.
+if (process.env.VERCEL) {
+  app.use(async (_req, _res, next) => {
+    try {
+      if (mongoose.connection.readyState !== 1) await connectDatabase();
+      next();
+    } catch (error) {
+      next(error);
+    }
+  });
+}
 app.use(helmet());
 app.use(requestLogger);
 app.use(generalLimiter);
