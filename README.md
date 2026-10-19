@@ -270,3 +270,7 @@ For D2L, submit the **GitHub repository link, project ZIP with `node_modules` an
 ## 9. How to explain this implementation
 
 Be prepared to explain: JWT signing/verifying and Bearer headers; bcrypt salted password hashes; `User._id` → `Employee.user` relationships; owner-based query filters; why input validation happens before DB writes; Helmet response headers; rate-limit windows and 429; centralized error JSON; log data excluding secrets; the `/health` JSON; and the meaning of each HTTP status code. These topics are specifically listed in the assignment.
+
+## Live Deployment
+API: https://101578885-comp-3123-assignment1.vercel.app
+Health Check: https://101578885-comp-3123-assignment1.vercel.app/health
