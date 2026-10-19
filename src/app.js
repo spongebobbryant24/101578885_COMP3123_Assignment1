@@ -10,6 +10,7 @@ const connectDatabase = require('./config/db');
 
 const app = express();
 app.disable('x-powered-by');
+app.set('trust proxy', 1); // Trust first proxy for rate limiting
 // Vercel loads src/app.js directly; ensure the Atlas connection is ready.
 if (process.env.VERCEL) {
   app.use(async (_req, _res, next) => {
